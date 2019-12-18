@@ -4,3 +4,5 @@ include(":eureka-service")
 include(":zuul-service")
 include(":permit-service")
 include(":blog-app")
+include 'common-utils'
+
