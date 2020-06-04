@@ -4,50 +4,76 @@
             <a-layout-header>
                 <a-row>
                     <a-col class="icon" :span="6">网站标题</a-col>
-                    <a-col class="search" :span="10">
+                    <a-col class="menu" :span="12">
+                        <a-menu v-model="current" mode="horizontal">
+                            <a-menu-item key="index" @click="toIndex">
+                                <!-- <a-icon type="mail" /> -->
+                                首页
+                            </a-menu-item>
+                            <a-menu-item key="label" @click="toLabale">
+                                <!-- <a-icon type="mail" /> -->
+                                Java
+                            </a-menu-item>
+                            <a-menu-item key="python">
+                                <!-- <a-icon type="mail" /> -->
+                                Python
+                            </a-menu-item>
+                            <a-menu-item key="web">
+                                <!-- <a-icon type="mail" /> -->
+                                Web安全
+                            </a-menu-item>
+                            <a-menu-item key="Kotlin">
+                                <!-- <a-icon type="mail" /> -->
+                                Kotlin
+                            </a-menu-item>
+                            <a-menu-item key="Groovy">
+                                <!-- <a-icon type="mail" /> -->
+                                Groovy
+                            </a-menu-item>
+                            <a-menu-item key="basic">
+                                <!-- <a-icon type="mail" /> -->
+                                计算机基础
+                            </a-menu-item>
+                            <a-menu-item key="other">
+                                <!-- <a-icon type="mail" /> -->
+                                其他
+                            </a-menu-item>
+                        </a-menu>
+                    </a-col>
+                    <a-col class="search" :span="6">
                         <a-input-search
                             placeholder="input search text"
                             enter-button="Search"
                             size="large"
                         />
                     </a-col>
-                    <a-col class="menu" :span="8">
-                        <a-menu v-model="current" mode="horizontal">
-                            <a-menu-item key="index" @click="toIndex">
-                                <a-icon type="mail" />首页
-                            </a-menu-item>
-                            <a-menu-item key="label" @click="toLabale">
-                                <a-icon type="mail" />标签页
-                            </a-menu-item>
-                            <a-menu-item key="java">
-                                <a-icon type="mail" />标签页
-                            </a-menu-item>
-                        </a-menu>
-                    </a-col>
                 </a-row>
             </a-layout-header>
-            <a-layout-content>
+            <a-layout-content class="content">
                 <a-row :gutter="32">
-                    <a-col :span="5">
-                        <div class="body-left"></div>
-                    </a-col>
-                    <a-col :span="12" class="body-contain">
+                    <!-- <a-col :span="6">
+                        <div class="body-left">
+                            <group-list></group-list>
+                        </div>
+                    </a-col>-->
+                    <a-col :span="18" class="body-contain">
                         <keep-alive include="CountChartIndex">
                             内容
                             <router-view />
                         </keep-alive>
                     </a-col>
-                    <a-col :span="5">
+                    <a-col :span="6">
                         <div class="body-right">
-                            <div>
-                                <Userinfo></Userinfo>
-                            </div>
-                            <div>
-                                <group-list></group-list>
-                            </div>
-                            <div>
-                                <tags></tags>
-                            </div>
+                            <!-- 个人信息 -->
+                            <!-- 分类 -->
+                            <!-- 标签 -->
+                            <!-- 最新文章 -->
+                            <!-- 推荐 -->
+                            <!-- 点击排行 -->
+                            <!-- 归档 -->
+                            <Userinfo></Userinfo>
+                            <group-list></group-list>
+                            <tags></tags>
                         </div>
                     </a-col>
                 </a-row>
@@ -68,19 +94,24 @@ export default {
         };
     },
     components: { Userinfo, GroupList, Tags },
-    methods:{
-        toLabale(){
-            this.$router.push("/label")
+    methods: {
+        toLabale() {
+            this.$router.push("/label");
         },
-        toIndex(){
-            this.$router.push("/home")
+        toIndex() {
+            this.$router.push("/home");
         }
     }
 };
 </script>
 <style>
-#components-layout-demo-basic {
+/* #components-layout-demo-basic {
     text-align: center;
+} */
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .icon {
@@ -124,37 +155,13 @@ export default {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
 }
 
-.body-right {
+.body-right,
+.body-left {
     margin-top: 50px;
 }
 
-.body-right div{
+.body-right .ant-card {
     background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
-    margin-bottom: 16px;
-}
-
-.userinfo {
-    height: 325px;
-    margin-top: 50px;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-sizing: border-box;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
-    margin-bottom: 16px;
-}
-
-.group {
-    height: 400px;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-sizing: border-box;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
-    margin-bottom: 16px;
-}
-
-.tags {
-    height: 200px;
-    background-color: rgba(255, 255, 255, 0.9);
-    box-sizing: border-box;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
     margin-bottom: 16px;
 }
@@ -180,7 +187,6 @@ export default {
 }
 
 #components-layout-demo-basic .ant-layout-footer {
-    background-color: green;
     line-height: 1.5;
 }
 #components-layout-demo-basic .ant-layout-sider {

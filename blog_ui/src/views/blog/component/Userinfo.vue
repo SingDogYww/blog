@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <avatar username="张飞"></avatar>
-  </div>
+  <a-card>
+    <a-avatar style="backgroundColor:#87d068" :size="72">张飞</a-avatar>
+  </a-card>
 </template>
 
 <script>
-import avatar from 'vue-avatar'
+// import avatar from 'vue-avatar'
 export default {
   components:{
-    avatar
+    // avatar
   }
 }
 </script>
